@@ -1,0 +1,208 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Communal Services Schema",
+  "required": [
+    "servicedHouses"
+  ],
+  "properties": {
+    "servicedHouses" : {
+      "$id": "#/properties/servicedHouses",
+      "type": "array",
+      "title": "The Serviced Houses Schema",
+      "items": {
+        "$id": "#/properties/servicedHouse",
+        "type": "array",
+        "title": "The Serviced House Schema",
+        "items": {
+          "oneOf": [
+            {
+              "$id": "#/properties/servicedHouses/items",
+              "type": "object",
+              "title": "The Address Schema",
+              "required": [
+                "city",
+                "street",
+                "house"
+              ],
+              "properties": {
+                "city": {
+                  "$id": "#/properties/servicedHouses/items/items/properties/city",
+                  "type": "string",
+                  "title": "The City Schema",
+                  "default": "",
+                  "examples": [
+                    "minsk"
+                  ]
+                },
+                "street": {
+                  "$id": "#/properties/servicedHouses/items/items/properties/street",
+                  "type": "string",
+                  "title": "The Street Schema",
+                  "default": "",
+                  "examples": [
+                    "gikalo"
+                  ]
+                },
+                "house": {
+                  "$id": "#/properties/servicedHouses/items/items/properties/house",
+                  "type": "integer",
+                  "title": "The HouseNumber Schema",
+                  "default": 0,
+                  "examples": [
+                    9
+                  ]
+                }
+              }
+            },
+            {
+              "$id": "http://example.com/root.json",
+              "type": "object",
+              "title": "The Root Schema",
+              "required": [
+                "address",
+                "apartments"
+              ],
+              "properties": {
+                "address": {
+                  "$id": "#/properties/address",
+                  "type": "object",
+                  "title": "The Address Schema",
+                  "required": [
+                    "city",
+                    "street",
+                    "house"
+                  ],
+                  "properties": {
+                    "city": {
+                      "$id": "#/properties/address/properties/city",
+                      "type": "string",
+                      "title": "The City Schema",
+                      "default": "",
+                      "examples": [
+                        "minsk"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "street": {
+                      "$id": "#/properties/address/properties/street",
+                      "type": "string",
+                      "title": "The Street Schema",
+                      "default": "",
+                      "examples": [
+                        "gikalo"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "house": {
+                      "$id": "#/properties/address/properties/house",
+                      "type": "integer",
+                      "title": "The House Schema",
+                      "default": 0,
+                      "examples": [
+                        9
+                      ]
+                    }
+                  }
+                },
+                "apartments": {
+                  "$id": "#/properties/apartments",
+                  "type": "object",
+                  "title": "The Apartments Schema",
+                  "patternProperties": {
+                    ".{1,}": {
+                      "$id": "http://example.com/root1.json",
+                      "type": "object",
+                      "title": "The Apartment Schema",
+                      "required": [
+                        "number",
+                        "powerConsumption",
+                        "hotWaterConsumption",
+                        "coldWaterConsumption",
+                        "residents"
+                      ],
+                      "properties": {
+                        "number": {
+                          "$id": "#/properties/number",
+                          "type": "integer",
+                          "title": "The Number Schema",
+                          "default": 0,
+                          "examples": [
+                            1
+                          ]
+                        },
+                        "powerConsumption": {
+                          "$id": "#/properties/powerConsumption",
+                          "type": "number",
+                          "title": "The Powerconsumption Schema",
+                          "default": 0,
+                          "examples": [
+                            0.5
+                          ]
+                        },
+                        "hotWaterConsumption": {
+                          "$id": "#/properties/hotWaterConsumption",
+                          "type": "number",
+                          "title": "The Hotwaterconsumption Schema",
+                          "default": 0,
+                          "examples": [
+                            0.5
+                          ]
+                        },
+                        "coldWaterConsumption": {
+                          "$id": "#/properties/coldWaterConsumption",
+                          "type": "number",
+                          "title": "The Coldwaterconsumption Schema",
+                          "default": 0,
+                          "examples": [
+                            0.5
+                          ]
+                        },
+                        "residents": {
+                          "$id": "#/properties/residents",
+                          "type": "array",
+                          "title": "The Residents Schema",
+                          "items": {
+                            "$id": "#/properties/residents/items",
+                            "type": "object",
+                            "title": "The Items Schema",
+                            "required": [
+                              "name",
+                              "gender"
+                            ],
+                            "properties": {
+                              "name": {
+                                "$id": "#/properties/residents/items/properties/name",
+                                "type": "string",
+                                "title": "The Name Schema",
+                                "default": "",
+                                "examples": [
+                                  "ivan"
+                                ]
+                              },
+                              "gender": {
+                                "$id": "#/properties/residents/items/properties/gender",
+                                "type": "string",
+                                "title": "The Gender Schema",
+                                "default": "",
+                                "examples": [
+                                  "MALE"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
