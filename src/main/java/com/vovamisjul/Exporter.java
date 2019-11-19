@@ -6,10 +6,13 @@ import com.vovamisjul.entities.Apartment;
 import com.vovamisjul.entities.House;
 import com.vovamisjul.entities.HouseAddress;
 import com.vovamisjul.entities.people.Resident;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.Map;
 
 public class Exporter {
+    protected final Logger logger = LogManager.getLogger(Exporter.class);
     private DBController dbController = new DBController();
 
     public Exporter() {
@@ -25,6 +28,7 @@ public class Exporter {
     }
 
     private void exportHouse(House house) throws Exception {
+        logger.info("Adding house: " + house);
         int id = dbController.addHouse(house.getAddress());
         for (var apartment:house.getApartments().values()
              ) {
@@ -33,6 +37,7 @@ public class Exporter {
     }
 
     private void exportApartment(Apartment apartment, int idHouse) throws Exception {
+        logger.info("Adding apartment: " + apartment);
         int id = dbController.addApartment(apartment, idHouse);
         for (var resident:apartment.getResidents()
         ) {
@@ -41,6 +46,7 @@ public class Exporter {
     }
 
     private void exportResident(Resident resident, int idApartment) throws Exception {
+        logger.info("Adding resident: " + resident);
         int id = dbController.addResident(resident, idApartment);
     }
 }

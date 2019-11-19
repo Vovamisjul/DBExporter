@@ -4,6 +4,8 @@ import com.vovamisjul.entities.Apartment;
 import com.vovamisjul.entities.House;
 import com.vovamisjul.entities.HouseAddress;
 import com.vovamisjul.entities.people.Resident;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +16,7 @@ public class DBController {
     private final String db_user;
     private final String db_password;
     private final String connectionURL;
+    protected final Logger logger = LogManager.getLogger(DBController.class);
 
     public DBController() {
         db_user = "root";
@@ -22,6 +25,7 @@ public class DBController {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
+            logger.error("DB connection error", e);
         }
     }
 
